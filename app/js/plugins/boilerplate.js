@@ -7,7 +7,7 @@ var colors = {
     political: ["#D41B2C", "#006EB5"]
 }
 
-var chartmeta = {
+var linechartmeta = {
     title: "Weekly initial unemployment insurance claims, since 2000",
     subtitle: "",
     source: "U.S. Department of Labor",
@@ -20,10 +20,8 @@ d3.json('/interactive/2020/03/jobless-claims/data/jobless_claims.json')
      data.forEach(function(d) {
         d["Jobless Claims"] = +d["Jobless Claims"]
      })
-
-     console.log(data);
-
-    lineTemplate(data, chartmeta, "#linechart");
+     
+    lineTemplate(data, linechartmeta, "#linechart");
 
 }).catch(function(error){
    // handle error
