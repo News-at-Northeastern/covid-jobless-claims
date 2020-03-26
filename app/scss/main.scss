@@ -27,7 +27,7 @@
 
 div.tooltip {
        position: absolute;
-       text-align: center;
+       text-align: left;
        padding: 5px;
        font-size: 14px;
        font-weight: bold;
@@ -35,6 +35,7 @@ div.tooltip {
        border: 0px;
        border-radius: 8px;
        font-family: "Akkurat",sans-serif;
+       width:150px
    }
 
    .tooltip p {
