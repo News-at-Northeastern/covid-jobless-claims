@@ -27,8 +27,9 @@ function lineTemplate(data, chartmeta, targetElement) {
                   .ticks(7)
                   .tickSize(-width);
                   // create container SVG
+
   var svg = d3.select(targetElement).append("svg")
-      .attr("width", width + margin.left + margin.right)
+      .attr("width", width)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
       .attr("transform",
@@ -36,7 +37,7 @@ function lineTemplate(data, chartmeta, targetElement) {
 
   svg.append("g")
       .attr("class", "xAxis")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate(" + margin.left + "," + height + ")")
       .style("font-size", "14px")
       .call(customXAxis);
       // .selectAll(".tick:not(:first-of-type) line")
@@ -65,16 +66,16 @@ function lineTemplate(data, chartmeta, targetElement) {
         .x(function(d) { return x(d["Week Ending"]) + 50})
         .y(function(d) { return y(d["Jobless Claims"]) });
 
-        // var tooltip = d3.tip()
-        //  .attr('class', 'd3-tip')
-        //  .offset([-10,0])
-        //  .html(function(d) {
-        //      return d["Week Ending"] + ": " + d["Jobless Claims"];
-        //    })
-        //  .attr("fill", "red");
+        var tooltip = d3.tip()
+         .attr('class', 'd3-tip')
+         .offset([-10,0])
+         .html(function(d) {
+             return d["Week Ending"] + ": " + d["Jobless Claims"];
+           })
+         .attr("fill", "red");
 
-           // svg.append('circle').attr('class', 'tiptarget');
-           // svg.call(tooltip);
+           svg.append('circle').attr('class', 'tiptarget');
+           svg.call(tooltip);
 
       svg.append("path")
             .datum(data)
@@ -105,13 +106,13 @@ function lineTemplate(data, chartmeta, targetElement) {
                 .attr("fill", "#f08080")
                 .attr("r", 5);
 
-              // var target = d3.select(targetElement + ' .tiptarget')
-              // .attr('dx', d3.event.pageX + "px")
-              // .attr('dy', d3.event.pageY + "px") // 5 pixels above the cursor
-              // .node();
-              // tooltip.show(d, target);
-              //
-              // console.log(d["Week Ending"] + ":" + d["Jobless Claims"]);
+              var target = d3.select(targetElement + ' .tiptarget')
+              .attr('dx', d3.event.pageX + "px")
+              .attr('dy', d3.event.pageY + "px") // 5 pixels above the cursor
+              .node();
+              tooltip.show(d, target);
+
+              console.log(d["Week Ending"] + ":" + d["Jobless Claims"]);
 
               div.transition().style("opacity", .7);
 
