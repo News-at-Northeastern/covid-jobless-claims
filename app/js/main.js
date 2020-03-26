@@ -1,4 +1,4 @@
-var margin = {top:25, right:50, bottom:50, left:75};
+var margin = {top:25, right:30, bottom:20, left:75};
 
 var colors = {
     bold: ["#d51e2d", "#52CFE5", "#385775", "#FFBF3D", "#6f2b6e", "#00CFB5"],
@@ -23,7 +23,7 @@ d3.json('/interactive/2020/03/jobless-claims/data/jobless_claims.json')
 
      console.log(data);
 
-    lineTemplate(data, chartmeta, "#line");
+    lineTemplate(data, chartmeta, "#linechart");
 
 }).catch(function(error){
    // handle error
@@ -60,7 +60,11 @@ function lineTemplate(data, chartmeta, targetElement) {
    var xAxis = d3.axisBottom(x)
       .tickFormat(function(d,i){
          if ((i+45)%100 === 0) {
-            return d;
+            if (width > 700) {
+               return d;
+            } else {
+               return null;
+            }
          }
       })
       .tickSize(0);
@@ -78,12 +82,12 @@ function lineTemplate(data, chartmeta, targetElement) {
       // .selectAll(".tick:not(:first-of-type) line")
       // .attr("stroke-opacity", 0);
 
-   svg.append("text")
-      .attr("transform",
-      "translate(" + (width/2) + " ," +
-      (height + margin.top + 15) + ")")
-      .style("text-anchor", "middle")
-      .text("Week Ending");
+   // svg.append("text")
+   //    .attr("transform",
+   //    "translate(" + (width/2) + " ," +
+   //    (height + margin.top + 15) + ")")
+   //    .style("text-anchor", "middle")
+   //    .text("Week Ending");
 
 
       // recession annotation

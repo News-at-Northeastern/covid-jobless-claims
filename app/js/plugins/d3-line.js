@@ -29,7 +29,11 @@ function lineTemplate(data, chartmeta, targetElement) {
    var xAxis = d3.axisBottom(x)
       .tickFormat(function(d,i){
          if ((i+45)%100 === 0) {
-            return d;
+            if (width > 700) {
+               return d;
+            } else {
+               return null;
+            }
          }
       })
       .tickSize(0);
@@ -47,12 +51,12 @@ function lineTemplate(data, chartmeta, targetElement) {
       // .selectAll(".tick:not(:first-of-type) line")
       // .attr("stroke-opacity", 0);
 
-   svg.append("text")
-      .attr("transform",
-      "translate(" + (width/2) + " ," +
-      (height + margin.top + 15) + ")")
-      .style("text-anchor", "middle")
-      .text("Week Ending");
+   // svg.append("text")
+   //    .attr("transform",
+   //    "translate(" + (width/2) + " ," +
+   //    (height + margin.top + 15) + ")")
+   //    .style("text-anchor", "middle")
+   //    .text("Week Ending");
 
 
       // recession annotation
