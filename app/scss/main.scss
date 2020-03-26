@@ -21,6 +21,12 @@
         font-weight: normal;
     }
 
+    h6 {
+      font-size:0.75rem;
+      color: #666;
+      margin:0 auto;
+   }
+
 }
 
 
@@ -31,7 +37,7 @@ div.tooltip {
        padding: 5px;
        font-size: 14px;
        font-weight: bold;
-       background: lightsteelblue;
+       background: #ccc;
        border: 0px;
        border-radius: 8px;
        font-family: "Akkurat",sans-serif;

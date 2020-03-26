@@ -8,10 +8,10 @@ var colors = {
 }
 
 var chartmeta = {
-    title: "Title goes here",
-    subtitle: "Subtitle goes here",
+    title: "Weekly initial unemployment insurance claims, since 2000",
+    subtitle: "",
     source: "U.S. Department of Labor",
-    note: "Numbers are seasonally adjusted."
+    note: "Numbers are seasonally adjusted. Areas with gray backgrounds denote recessions."
 }
 
 
@@ -31,8 +31,12 @@ d3.json('/interactive/2020/03/jobless-claims/data/jobless_claims.json')
 
 function lineTemplate(data, chartmeta, targetElement) {
 
-   var title = d3.select(targetElement).append("h3").text(chartmeta.title);
-   var subtitle = d3.select(targetElement).append("h5").text(chartmeta.subtitle);
+   if (chartmeta.title) {
+      d3.select(targetElement).append("h3").text(chartmeta.title);
+   }
+   if (chartmeta.subtitle) {
+      var subtitle = d3.select(targetElement).append("h5").text(chartmeta.subtitle);
+   }
 
    var width = d3.select(targetElement).node().getBoundingClientRect().width;
    var height = width * 0.4;
@@ -44,11 +48,14 @@ function lineTemplate(data, chartmeta, targetElement) {
       .attr("transform",
       "translate(" + margin.left + "," + margin.top + ")");
 
+
+
+
    // horizontal axis
    var x = d3.scaleBand()
       .domain(data.map(function(d) { return d["Week Ending"]; }))
       .range([0, width - margin.left - margin.right])
-      .padding(0.33);
+      .padding(0);
 
    var xAxis = d3.axisBottom(x)
       .tickFormat(function(d,i){
@@ -77,6 +84,22 @@ function lineTemplate(data, chartmeta, targetElement) {
       (height + margin.top + 15) + ")")
       .style("text-anchor", "middle")
       .text("Week Ending");
+
+
+      // recession annotation
+   svg.append("rect")
+      .attr("x", x("3/3/01"))
+      .attr("y", 0)
+      .attr("width", (x("11/24/01") - x("3/3/01")))
+      .attr("height", height)
+      .attr("fill","gainsboro")
+
+   svg.append("rect")
+      .attr("x", x("12/1/07"))
+      .attr("y", 0)
+      .attr("width", (x("6/27/09") - x("12/1/07")))
+      .attr("height", height)
+      .attr("fill","gainsboro")
 
 
 
@@ -125,6 +148,8 @@ function lineTemplate(data, chartmeta, targetElement) {
       .attr("stroke", "#cc0000")
       .attr("stroke-width", 2)
       .attr("d", line);
+
+
 
 
 

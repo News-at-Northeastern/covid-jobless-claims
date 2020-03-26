@@ -8,10 +8,10 @@ var colors = {
 }
 
 var chartmeta = {
-    title: "Title goes here",
-    subtitle: "Subtitle goes here",
+    title: "Weekly initial unemployment insurance claims, since 2000",
+    subtitle: "",
     source: "U.S. Department of Labor",
-    note: "Numbers are seasonally adjusted."
+    note: "Numbers are seasonally adjusted. Areas with gray backgrounds denote recessions."
 }
 
 
