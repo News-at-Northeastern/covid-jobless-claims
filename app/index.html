@@ -5,7 +5,12 @@
 <meta charset="UTF-8">
 <title>Gulp Template</title>
 <link rel="stylesheet" href="css/styles.min.css">
-
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="js/library/d3.v5.min.js"></script>
 <!-- <script src="js/library/d3-tip.js"></script> -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,6 +21,15 @@
   <div class="wrapper">
 
       <div id="linechart" class="d3-chart"></div>
+<p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales sodales magna vel tempor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent facilisis feugiat finibus. Vestibulum velit dolor, pellentesque ac est eget, bibendum laoreet nisl. Sed faucibus interdum mollis. Aenean nulla ex, sollicitudin venenatis ultrices id, gravida vel purus. Nam lorem augue, posuere id laoreet et, commodo quis nisl. Praesent efficitur facilisis tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin purus nulla, rhoncus eu mauris vel, fringilla hendrerit dui.</p>
+
+
+      <div id="statedata" class="d3-chart">
+         <h3>Breakdown of Most Recent Jobless Claims By State</h3>
+         <table id="datatable"></table>
+         <h6>SOURCE: U.S. Department of Labor; Bureau of Labor Statistics</h6>
+      </div>
 
 
   </div>

@@ -8,20 +8,56 @@ var colors = {
 }
 
 var linechartmeta = {
-    title: "Weekly initial unemployment insurance claims, since 2000",
+    title: "Weekly Initial Unemployment Insurance Claims, Since 2000",
     subtitle: "",
     source: "U.S. Department of Labor",
     note: "Numbers are seasonally adjusted. Areas with gray backgrounds denote recessions."
 }
 
+var tablemeta = {
+    title: "Breakdown of Most Recent Jobless Claims By State",
+    subtitle: "",
+    source: "U.S. Department of Labor; Bureau of Labor Statistics",
+    note: ""
+}
 
-d3.json('/interactive/2020/03/jobless-claims/data/jobless_claims.json')
-  .then(function(data) {
-     data.forEach(function(d) {
-        d["Jobless Claims"] = +d["Jobless Claims"]
-     })
-     
-    lineTemplate(data, linechartmeta, "#linechart");
+
+Promise.all([
+   d3.json('/interactive/2020/03/jobless-claims/data/jobless_claims.json'),
+   d3.json('/interactive/2020/03/jobless-claims/data/statedata.json')
+])
+.then(function(data) {
+  data[0].forEach(function(d) {
+     d["Jobless Claims"] = +d["Jobless Claims"]
+  })
+
+ lineTemplate(data[0], linechartmeta, "#linechart");
+
+ d3.select("#statedata h3").text(tablemeta.title);
+ $('#datatable').DataTable({
+    data: data[1],
+    columns: [
+        {   data: 'State',
+            title: 'State'
+         },
+        {   data: 'Advance Claims',
+            title: 'Jobless Claims Filed',
+            render: function (data) {
+                return data.toLocaleString('en-US');
+            }
+         },
+        {   data: 'Percent Change',
+            title: 'Change From Previous Week',
+            render: function (data) {
+                return Math.round(data*100) + "%";
+            }
+         },
+        {   data: 'Claims Per Thousand',
+            title: 'Claims Per 1000 Workers'
+         }
+    ]
+});
+d3.select("#statedata h6").text("SOURCE: " + tablemeta.source);
 
 }).catch(function(error){
    // handle error
