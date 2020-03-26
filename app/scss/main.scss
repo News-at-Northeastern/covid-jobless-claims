@@ -25,7 +25,11 @@
 
 }
 
-
+#datatable_length, #datatable_filter {
+   padding: 10px;
+   background-color: #eee;
+   border-radius: 5px;
+}
 
 div.tooltip {
        position: absolute;

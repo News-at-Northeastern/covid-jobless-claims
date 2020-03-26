@@ -49,7 +49,7 @@ Promise.all([
         {   data: 'Percent Change',
             title: 'Change From Previous Week',
             render: function (data) {
-                return Math.round(data*100) + "%";
+                return "+" + Math.round(data*100) + "%";
             }
          },
         {   data: 'Claims Per Thousand',
