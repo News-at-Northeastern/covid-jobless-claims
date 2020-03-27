@@ -25,10 +25,51 @@
 
 }
 
+#statedata, #datatable_wrapper {
+   margin-bottom:2rem;
+}
+
+#datatable_wrapper, #datatable {
+   max-width: 750px;
+   margin:0 auto;
+   font-family:$body-font;
+
+   td {
+      border-left: 0;
+      border-width: 0;
+   }
+
+   .even {
+      background-color: #eee;
+   }
+}
+
 #datatable_length, #datatable_filter {
    padding: 10px;
    background-color: #eee;
    border-radius: 5px;
+   margin:0 auto 2rem;
+
+   input {
+      height:1.5rem;
+   }
+}
+
+#datatable_info {
+   color:#999;
+}
+
+#datatable_info, #datatable_paginate {
+   margin: 0 auto;
+   display: block;
+   width: 80%;
+   clear: both;
+   text-align: center;
+   float:none;
+
+   a {
+      box-shadow: none;
+   }
 }
 
 div.tooltip {
